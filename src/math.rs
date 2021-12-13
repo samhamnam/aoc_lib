@@ -21,6 +21,18 @@ pub fn rotate_90deg<A: Copy>(m: MatrixVecIter<A>) -> MatrixVecIter<A> {
     collums.into_iter()
 }
 
+pub fn rotate_90deg_vec<A: Copy>(m: &mut Matrix<A>) {
+    let mut collums = vec![];
+    for y in 0..m[0].len() {
+        let mut collumn = vec![];
+        m.iter().for_each(|x| collumn.push(x[y]));
+        collumn.reverse();
+        collums.push(collumn);
+    }
+    m.clear();
+    m.append(&mut collums);
+}
+
 pub fn transpose<A: Copy>(m: MatrixVecIter<A>) -> MatrixVecIter<A> {
     let m = m.map(|r| r.collect::<Vec<_>>()).collect::<Vec<_>>();
     let mut collums = vec![];
