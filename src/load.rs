@@ -1,4 +1,4 @@
-use crate::math::Matrix;
+use crate::math::MatrixVecIter;
 use std::{fmt::Debug, fs, path::Path, vec::IntoIter};
 
 pub fn load<P: AsRef<Path> + Debug + Copy>(path: P) -> String {
@@ -17,7 +17,7 @@ where
         .into_iter()
 }
 
-pub fn load_to_rows_and_pattern<A, P>(path: A, p: P) -> Matrix<String>
+pub fn load_to_rows_and_pattern<A, P>(path: A, p: P) -> MatrixVecIter<String>
 where
     A: AsRef<Path> + Debug + Copy,
     P: Fn(char) -> bool + Copy,
@@ -47,7 +47,7 @@ where
         .into_iter()
 }
 
-pub fn load_to_matrix<A>(path: A) -> Matrix<char>
+pub fn load_to_matrix<A>(path: A) -> MatrixVecIter<char>
 where
     A: AsRef<Path> + Debug + Copy,
 {
